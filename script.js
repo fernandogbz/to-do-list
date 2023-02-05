@@ -28,8 +28,24 @@ const addNewTask = event => {
   event.target.reset();
 }
 
+// Changing task state
 const changeTaskState = event => {
   event.target.classList.toggle('done');
+}
+
+// Ordering Tasks
+const order = () => {
+  const done = [];
+  const toDo = [];
+  tasksContainer.childNodes.forEach(element =>{
+    element.classList.contains('done') ? done.push(element) : toDo.push(element)
+  })
+  return[...toDo, ...done];
+}
+
+// Adding each element to tasksContainer
+const renderOrderedTasks = () => {
+  order().forEach(element => tasksContainer.appendChild(element));
 }
 
 setDate();
